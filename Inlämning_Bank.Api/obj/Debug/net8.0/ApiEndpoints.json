@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AuthController",
+    "Method": "Register",
+    "RelativePath": "api/createaccount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "Inl\u00E4mning_Bank.Domain.DTO.UserDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerController",
+    "Method": "Get",
+    "RelativePath": "api/Customer",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AuthController",
+    "Method": "Login",
+    "RelativePath": "api/signin",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "user",
+        "Type": "Inl\u00E4mning_Bank.Domain.DTO.UserDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
