@@ -1,0 +1,17 @@
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Data.deps.json
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Data.runtimeconfig.json
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Data.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Data.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Domain.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\bin\Debug\net8.0\Inlämning_Bank.Domain.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.csproj.AssemblyReference.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.AssemblyInfoInputs.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.AssemblyInfo.cs
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.csproj.CoreCompileInputs.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämnin.62620E0E.Up2Date
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\refint\Inlämning_Bank.Data.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.genruntimeconfig.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\ref\Inlämning_Bank.Data.dll

@@ -1,0 +1,17 @@
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Core.deps.json
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Core.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Core.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Data.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Domain.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Data.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\bin\Debug\net8.0\Inlämning_Bank.Domain.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.csproj.AssemblyReference.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.AssemblyInfoInputs.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.AssemblyInfo.cs
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.csproj.CoreCompileInputs.cache
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämnin.624B5FD5.Up2Date
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\refint\Inlämning_Bank.Core.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\Inlämning_Bank.Core.pdb
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Core\obj\Debug\net8.0\ref\Inlämning_Bank.Core.dll
