@@ -1,6 +1,8 @@
-﻿using Inlämning_Bank.Core.Interfaces;
+﻿using AutoMapper;
+using Inlämning_Bank.Core.Interfaces;
 using Inlämning_Bank.Core.Services;
 using Inlämning_Bank.Domain.DTO;
+using Inlämning_Bank.Domain.Entities;
 using Inlämning_Bank.Domain.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -8,49 +10,27 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace Inlämning_Bank.Api.Controllers
 {
-    //[Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class AuthController : ControllerBase
     {
-
-        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IUserService _userService;
         private readonly ICustomerService _customerService;
+        private readonly IMapper _mapper;
 
-        public AuthController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ICustomerService customerService)
+
+        public AuthController(SignInManager<ApplicationUser> signInManager, ICustomerService customerService, IUserService userService, IMapper mapper)
         {
-            _userManager = userManager;
             _signInManager = signInManager;
+            _userService = userService;
             _customerService = customerService;
-        }
-
-
-
-        [Route("/api/createaccount")]
-        [HttpPost]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> AddNewCustomerAndAccount([FromBody] NewCustomerInfoDTO customerInfo)
-        {
-            if (customerInfo == null)
-            {
-                return BadRequest("Invalid user data");
-            }
-
-            try
-            {
-                await _customerService.AddCustomer(customerInfo);
-                return Ok("Customer and account created successfully");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Error occurred {ex.Message}");
-            }
-
-
+            _mapper = mapper;
         }
 
         [Route("/api/signin")]
@@ -62,24 +42,7 @@ namespace Inlämning_Bank.Api.Controllers
 
             if (result.Succeeded)
             {
-                //List<Claim> claims = new List<Claim>();
-                //claims.Add(new Claim(ClaimTypes.Role, "Customer"));
-
-
-                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mysecretKey12345!#123456789101112"));
-
-                var signInCredentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
-
-                var tokenOptions = new JwtSecurityToken(
-                    issuer: "http://localhost:5166/",
-                    audience: "http://localhost:5166/",
-                    //claims: claims,
-                    expires: DateTime.Now.AddMinutes(20),
-                    signingCredentials: signInCredentials
-                    );
-
-
-                var tokenString = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                var tokenString = await _userService.GenerateToken(user);
 
                 return Ok(tokenString);
             }
@@ -88,5 +51,30 @@ namespace Inlämning_Bank.Api.Controllers
                 return Unauthorized();
             }
         }
+
+        [Route("/api/customerprofile")]
+        [HttpGet]
+        [Authorize( Roles = "Customer" )]
+        public async Task<IActionResult> ViewCustomerDetails()
+        {
+            try
+            {
+                var customerId = await _userService.RetrieveCustomerId(User);
+
+                var customer = await _customerService.GetCustomerById(customerId);
+
+                var customerDTO = _mapper.Map<CustomerProfileDTO>(customer);
+
+                return Ok(customerDTO);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+
+        }
+
+
     }
 }

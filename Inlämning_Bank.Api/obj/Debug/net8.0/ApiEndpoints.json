@@ -1,28 +1,102 @@
 [
   {
-    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AuthController",
-    "Method": "Register",
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AdminController",
+    "Method": "AddNewCustomerAndAccount",
     "RelativePath": "api/createaccount",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user",
-        "Type": "Inl\u00E4mning_Bank.Domain.DTO.UserDTO",
+        "Name": "customerInfo",
+        "Type": "Inl\u00E4mning_Bank.Domain.DTO.NewCustomerDTO",
         "IsRequired": true
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerController",
-    "Method": "Get",
-    "RelativePath": "api/Customer",
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AuthController",
+    "Method": "ViewCustomerDetails",
+    "RelativePath": "api/customerprofile",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerAccountController",
+    "Method": "MakeTransaction",
+    "RelativePath": "api/maketransaction",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "transaction",
+        "Type": "Inl\u00E4mning_Bank.Domain.DTO.MakeTransactionDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerAccountController",
+    "Method": "ViewCustomerAccounts",
+    "RelativePath": "api/myaccounts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerAccountController",
+    "Method": "ViewAccountDetails",
+    "RelativePath": "api/myaccounts/{accountId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerAccountController",
+    "Method": "OpenNewAccount",
+    "RelativePath": "api/opennewaccount",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "accountType",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AdminController",
+    "Method": "SetUpLoanForCustomer",
+    "RelativePath": "api/setuploan",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loan",
+        "Type": "Inl\u00E4mning_Bank.Domain.DTO.LoanDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {

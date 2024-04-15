@@ -27,21 +27,27 @@ namespace Inlämning_Bank.Api
             var builder = WebApplication.CreateBuilder(args);
             builder.Configuration.AddJsonFile("appsettings.json");
 
-            // Automapper sätts upp som en service
-            builder.Services.AddAutoMapper(typeof(Program).Assembly);
-
-            // Marcus skrev detta i discord. Får se om jag upplever problem med detta.
-            // Märkte att Automapper började krångla lite om man har profilerna i ett annat projekt än där program.cs ligger. En lösning är följande
-            // builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            // Automapper sätts upp som en service, sättet Fredrik visade. 
+            //builder.Services.AddAutoMapper(typeof(Program).Assembly);
+            
+            //Sättet man gör det på om man har problem med att filerna ligger i olika projekt. 
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Controllers
             builder.Services.AddControllers()
                 .AddJsonOptions(options =>
                 {
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                    options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+                    //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve; 
+                    // undviker loopar, men kan ändå hänvisa till det tidigare objektet på något vis. blir större json än ignore cycles
+
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // undviker också loopar
+
+                    //options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; 
+                    // Jag vill nog att null värden ska visas också. för nu har jag ju en DTO klass för när man ska skriva in data.
+                    
                 });
+
+            
 
             //Swagger
             builder.Services.AddSwaggerGen(options =>
@@ -73,11 +79,20 @@ namespace Inlämning_Bank.Api
 
                 });
             });
-            
+
+            //testar lokal miljövariabel
+            string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+
+            //// Om anslutningssträngen inte hittas i miljövariabler, använd appsettings.json
+            //if (string.IsNullOrEmpty(connectionString))
+            //{
+            //    builder.Configuration.AddJsonFile("appsettings.json");
+            //    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+            //}
 
             //Databasen
             builder.Services.AddDbContext<BankAppDataContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString(connectionString))
                 );
 
             //Här sätts Identity upp som en tjänst. Bygger på att EF finns. 
@@ -87,11 +102,21 @@ namespace Inlämning_Bank.Api
 
 
             //Dependency injection container
-            builder.Services.AddTransient<ICustomerService, CustomerService>();
-            builder.Services.AddTransient<ICustomerRepo, CustomerRepo>();
-            builder.Services.AddTransient<IAccountRepo, AccountRepo>();
+            builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
+            builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
+            builder.Services.AddScoped<IAccountService, AccountService>();
+            builder.Services.AddScoped<IAccountRepo, AccountRepo>();
+            builder.Services.AddScoped<IDispositionService, DispositionService>(); 
+            builder.Services.AddScoped<IDispositionRepo, DispositionRepo>(); 
+            builder.Services.AddScoped<ILoanService, LoanService>();
+            builder.Services.AddScoped<ILoanRepo, LoanRepo>();
+            builder.Services.AddScoped<ITransactionService, TransactionService>();
+            builder.Services.AddScoped<ITransactionRepo, TransactionRepo>();
 
 
+
+            string secretKey = Environment.GetEnvironmentVariable("SecretKey");
 
             //Authentication sätts upp
             builder.Services.AddAuthentication(opt => {
@@ -106,11 +131,11 @@ namespace Inlämning_Bank.Api
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:5166/",
-                    ValidAudience = "http://localhost:5166/",
+                    ValidIssuer = "http://localhost:5249/",
+                    ValidAudience = "http://localhost:5249/",
                     IssuerSigningKey =
-                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes("mysecretKey12345!#123456789101112"))
-                    // Nyckeln kan man hantera med en tjänst så nyckeln inte ligger här, tex azure key vault.                    
+                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
+                                        
                 };
             });
 
