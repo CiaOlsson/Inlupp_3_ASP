@@ -11,6 +11,6 @@ namespace Inlämning_Bank.Data.Interfaces
     {
         Task<Customer> AddCustomer(Customer customer);
         Task<Customer> GetCustomerById(int id);
-        Task<List<Customer>> GetCustomers();
+
     }
 }

@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace Inlämning_Bank.Data.Interfaces
 {
-    public interface IAccountRepo
+    public interface ILoanRepo
     {
-        Task<Account> GetAccountById(int accountId);
-
-        Task<int> OpenNewAccount(Account account);
-        Task UpdateAccount(Account account);
+        Task NewLoan(Loan loan);
     }
 }

@@ -32,38 +32,46 @@ namespace Inlämning_Bank.Core.Services
             _userService = userService;
         }
 
-        public async Task AddCustomer(NewCustomerInfoDTO customerInfo)
+        public async Task AddCustomer(NewCustomerDTO customerInfo)
         {
            
             //Först ska jag separera all kundinformation så jag kan lägga in en del i Customer-tabellen och en annan del i AspNetUser-tabellen. 
             var customer = _mapper.Map<Customer>(customerInfo);
             var userModel = _mapper.Map<ApplicationUser>(customerInfo);
-            var account = _mapper.Map<Account>(customerInfo);
+            //var account = _mapper.Map<Account>(customerInfo);
 
             // Så sedan ska jag skapa en customer
             var returnedCustomer = await _repo.AddCustomer(customer);
 
             // Sen ge den en inloggning
-            await _userService.AddApplicationUser(userModel, returnedCustomer, customerInfo.Password); 
+            await _userService.AddApplicationUser(userModel, returnedCustomer, customerInfo.Password);
 
-            // sedan kan jag öppna ett konto till hen. 
-            int accountId = await _accountService.AddAccount(account);
+            // sedan kan jag öppna ett konto till hen. Sist måste jag koppla ihop kunden med kontot.
+            await _accountService.AddAccount(customerInfo.AccountTypeId, returnedCustomer.CustomerId);
  
 
-            // Sist måste jag koppla ihop kunden med kontot.
-            await _dispositionService.AddDisposition(returnedCustomer.CustomerId, accountId);
+
+            // testade flytta in detta i AddAccount
+            //await _dispositionService.AddDisposition(returnedCustomer.CustomerId, accountId);
 
 
         }
 
         public async Task<Customer> GetCustomerById(int id)
         {
-            var customer = await _repo.GetCustomerById(id);
-            return customer;
+            try
+            {
+                var customer = await _repo.GetCustomerById(id);
+
+                return customer;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Kunde inte hämta kundinformation: \n{ex.Message}");
+            }
         }
-        public async Task<List<Customer>> GetCustomers()
-        {
-            return await _repo.GetCustomers();
-        }
+
+  
     }
 }

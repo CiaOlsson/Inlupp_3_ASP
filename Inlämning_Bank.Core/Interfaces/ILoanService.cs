@@ -1,5 +1,4 @@
 ﻿using Inlämning_Bank.Domain.DTO;
-using Inlämning_Bank.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace Inlämning_Bank.Core.Interfaces
 {
-    public interface ICustomerService
+    public interface ILoanService
     {
-        Task AddCustomer(NewCustomerDTO customerInfo);
-        Task<Customer> GetCustomerById(int id);
-        
+        Task NewLoan(LoanDTO loanDTO);
     }
 }

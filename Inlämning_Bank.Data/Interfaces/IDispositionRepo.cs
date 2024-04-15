@@ -9,6 +9,7 @@ namespace Inlämning_Bank.Data.Interfaces
 {
     public interface IDispositionRepo
     {
+        Task<List<Disposition>> GetDispositionsByCustomerId(int id);
         Task AddDisposition(Disposition disposition);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Inlämning_Bank.Data.Contexts;
 using Inlämning_Bank.Data.Interfaces;
 using Inlämning_Bank.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,18 @@ namespace Inlämning_Bank.Data.Repos
         {
 
             _context.Dispositions.Add(disposition);
+            _context.SaveChanges();
+        }
+
+        public async Task<List<Disposition>> GetDispositionsByCustomerId(int id)
+        {
+            var dispositions = _context.Dispositions
+                                            .Include(d=>d.Account) 
+                                            .Include(d => d.Account.AccountTypes)
+                                            .Where(d => d.CustomerId == id)
+                                            .ToList();
+
+            return dispositions;
         }
     }
 }

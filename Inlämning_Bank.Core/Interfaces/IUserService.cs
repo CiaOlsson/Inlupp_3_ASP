@@ -1,4 +1,5 @@
-﻿using Inlämning_Bank.Domain.Entities;
+﻿using Inlämning_Bank.Domain.DTO;
+using Inlämning_Bank.Domain.Entities;
 using Inlämning_Bank.Domain.Identity;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace Inlämning_Bank.Core.Interfaces
     public interface IUserService
     {
         Task AddApplicationUser(ApplicationUser userModel, Customer returnedCustomer, string Password);
+        Task<string> GenerateToken(UserDTO user);
+        Task<int> RetrieveCustomerId(System.Security.Claims.ClaimsPrincipal user);
     }
 }

@@ -10,3 +10,4 @@ C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämn
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Domain\obj\Debug\net8.0\refint\Inlämning_Bank.Domain.dll
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Domain\obj\Debug\net8.0\Inlämning_Bank.Domain.pdb
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Domain\obj\Debug\net8.0\ref\Inlämning_Bank.Domain.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Domain\obj\Debug\net8.0\Inlämning_Bank.Domain.sourcelink.json

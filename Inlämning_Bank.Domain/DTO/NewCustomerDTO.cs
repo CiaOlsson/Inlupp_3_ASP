@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace Inlämning_Bank.Domain.DTO
 {
-    public class NewCustomerInfoDTO
+    public class NewCustomerDTO
     {
         //Det första här är för att kunna skapa en ny customer
-        public int CustomerId { get; set; }
+        //public int CustomerId { get; set; }
 
         public string Gender { get; set; } = null!;
 

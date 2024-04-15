@@ -9,28 +9,19 @@ using System.Threading.Tasks;
 
 namespace Inlämning_Bank.Data.Repos
 {
-    public class CustomerRepo : ICustomerRepo
+    public class LoanRepo : ILoanRepo
     {
         private readonly BankAppDataContext _context;
 
-        public CustomerRepo(BankAppDataContext context)
+        public LoanRepo(BankAppDataContext context)
         {
             _context = context;
         }
 
-
-        public async Task<Customer> AddCustomer(Customer customer)
+        public async Task NewLoan(Loan loan)
         {
-            _context.Add(customer);
+            _context.Loans.Add(loan);
             _context.SaveChanges();
-            return customer;
         }
-
-        public async Task<Customer> GetCustomerById(int id)
-        {
-            
-            return _context.Customers.SingleOrDefault(c => c.CustomerId == id);
-        }
-
     }
 }

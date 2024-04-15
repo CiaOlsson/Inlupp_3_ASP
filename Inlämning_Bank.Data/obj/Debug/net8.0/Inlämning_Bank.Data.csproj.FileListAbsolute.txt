@@ -15,3 +15,4 @@ C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämn
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.pdb
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.genruntimeconfig.cache
 C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\ref\Inlämning_Bank.Data.dll
+C:\Users\Cissi\Documents\NACKADEMIN\Inlämning-ASP-NET_1\Inlämning_Bank\Inlämning_Bank.Data\obj\Debug\net8.0\Inlämning_Bank.Data.sourcelink.json

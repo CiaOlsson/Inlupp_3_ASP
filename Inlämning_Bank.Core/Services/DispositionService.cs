@@ -23,10 +23,19 @@ namespace Inlämning_Bank.Core.Services
             Disposition disposition = new Disposition()
             {
                 CustomerId = customerId,
-                AccountId = accountId
+                AccountId = accountId,
+                Type = "OWNER"
             };
 
             await _repo.AddDisposition(disposition);
+
+        }
+
+        public async Task<List<Disposition>> GetDispositionsByCustomerId(int id)
+        {
+            var dispositions = await _repo.GetDispositionsByCustomerId(id);
+
+            return dispositions;
         }
     }
 }
