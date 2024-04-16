@@ -15,15 +15,13 @@ namespace Inlämning_Bank.Core.Services
     {
         private readonly ILoanRepo _repo;
         private readonly IMapper _mapper;
-        private readonly IAccountService _accountService;
         private readonly ITransactionService _transactionService;
 
 
-        public LoanService(ILoanRepo repo, IMapper mapper, IAccountService accountService, ITransactionService transactionService)
+        public LoanService(ILoanRepo repo, IMapper mapper, ITransactionService transactionService)
         {
             _repo = repo;
             _mapper = mapper;
-            _accountService = accountService;
             _transactionService = transactionService;
         }
 

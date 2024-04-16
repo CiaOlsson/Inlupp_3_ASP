@@ -24,13 +24,6 @@ namespace Inlämning_Bank.Data.Repos
             return account;
         }
 
-        //public async Task InsertMoneyOnAccount(int accountId, decimal amount)
-        //{
-        //    var account = _context.Accounts.SingleOrDefault(a=>a.AccountId == accountId);
-        //    account.Balance += amount;
-        //    _context.SaveChanges();
-        //}
-
         public async Task<int> OpenNewAccount(Account account)
         {
             _context.Accounts.Add(account);

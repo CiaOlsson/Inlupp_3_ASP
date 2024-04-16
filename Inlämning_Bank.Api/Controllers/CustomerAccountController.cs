@@ -33,11 +33,16 @@ namespace Inlämning_Bank.Api.Controllers
             {
                 var accounts = await _accountService.GetCustomerAccounts(User);
 
+                if (accounts == null)
+                {
+                    return Ok("Kunden har inga konton ännu.");
+                }
+
                 return Ok(accounts);
             }
             catch (Exception ex)
             {
-                return NotFound(ex.Message);
+                return Conflict(ex.Message);
             }
 
         }
@@ -66,7 +71,7 @@ namespace Inlämning_Bank.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Conflict(ex.Message);
             }
         }
 
@@ -85,7 +90,7 @@ namespace Inlämning_Bank.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message );
+                return Conflict(ex.Message );
             }
         }
 
@@ -109,8 +114,6 @@ namespace Inlämning_Bank.Api.Controllers
             {
                 return Conflict($"Det gick inte att föra över pengar. \n{ex.Message}");
             }
-
-
         }
     }
 }

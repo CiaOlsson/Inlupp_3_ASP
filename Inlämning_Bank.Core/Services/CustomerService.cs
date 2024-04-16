@@ -34,11 +34,9 @@ namespace Inlämning_Bank.Core.Services
 
         public async Task<int> AddCustomer(NewCustomerDTO customerInfo)
         {
-           
             //Först ska jag separera all kundinformation så jag kan lägga in en del i Customer-tabellen och en annan del i AspNetUser-tabellen. 
             var customer = _mapper.Map<Customer>(customerInfo);
             var userModel = _mapper.Map<ApplicationUser>(customerInfo);
-            //var account = _mapper.Map<Account>(customerInfo);
 
             // Så sedan ska jag skapa en customer
             var returnedCustomer = await _repo.AddCustomer(customer);
@@ -48,13 +46,6 @@ namespace Inlämning_Bank.Core.Services
 
             // sedan kan jag öppna ett konto till hen. Sist måste jag koppla ihop kunden med kontot.
             return await _accountService.AddAccount(customerInfo.AccountTypeId, returnedCustomer.CustomerId);
- 
-
-
-            // testade flytta in detta i AddAccount
-            //await _dispositionService.AddDisposition(returnedCustomer.CustomerId, accountId);
-
-
         }
 
         public async Task<Customer> GetCustomerById(int id)

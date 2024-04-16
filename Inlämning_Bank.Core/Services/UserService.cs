@@ -48,7 +48,7 @@ namespace Inlämning_Bank.Core.Services
             }
             else
             {
-                throw new Exception("Error occurred");
+                throw new Exception("Det gick inte att skapa användaren.");
             }
         }
 

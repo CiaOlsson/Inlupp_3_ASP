@@ -70,8 +70,6 @@ namespace Inlämning_Bank.Core.Services
                 accountList.Add(customerAccount);
             }
             
-            //för varje disposition i listan ska jag mappa till customeraccountdto och lägga i en ny lista som heter typ accountslist
-
             return accountList;
         }
 

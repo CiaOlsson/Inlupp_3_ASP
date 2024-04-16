@@ -5,7 +5,7 @@ namespace Inlämning_Bank.Domain.Identity
 {
     public class ApplicationUser : IdentityUser
     {
-        //En användare får vissa properties. Men vi kan lägga på flera här om vi vill. 
+        //Jag lägger till kunden här för att koppla ihop user som används till inloggning med en customer.
         public Customer? Customer { get; set; }
 
     }

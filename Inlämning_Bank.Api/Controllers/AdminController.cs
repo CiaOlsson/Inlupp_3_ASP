@@ -27,18 +27,18 @@ namespace Inlämning_Bank.Api.Controllers
         {
             if (customerInfo == null)
             {
-                return BadRequest("Invalid user data");
+                return BadRequest("Det saknas användardata.");
             }
 
             try
             {
                 int accountid = await _customerService.AddCustomer(customerInfo);
-                return Ok($"Customer and login created successfully.\nAccount number: {accountid}");
+                return Ok($"Kunden och inloggning skapades.\nKontonumret är: {accountid}");
 
             }
             catch (Exception ex)
             {
-                return BadRequest($"Error occurred {ex.Message}");
+                return Conflict($"Ett fel inträffade \n{ex.Message}");
             }
         }
 
@@ -48,7 +48,7 @@ namespace Inlämning_Bank.Api.Controllers
         {
             if (loan == null)
             {
-                return BadRequest("Invalid data");
+                return BadRequest("Det saknas information.");
             }
             try
             {
@@ -56,10 +56,10 @@ namespace Inlämning_Bank.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest($"Något gick fel!\n{ex.Message}");
+                return Conflict($"Något gick fel! \n{ex.Message}");
             }
 
-            return Ok("Kunden har ett nytt lån");
+            return Ok($"Kunden har fått ett nytt lån på {loan.Amount} kr.");
         }
     }
 }

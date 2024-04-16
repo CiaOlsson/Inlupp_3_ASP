@@ -15,50 +15,23 @@ namespace Inlämning_Bank.Domain.Profiles
     {
         public AutoMapperProfile()
         {
-
             // från klienten till databasen
 
             CreateMap<NewCustomerDTO, Customer>();
-            //.ForMember(dest => dest.Gender,
-            //option=>option.MapFrom(src => src.Gender))
-            //.ForMember(dest => dest.Givenname,
-            //option => option.MapFrom(src => src.Givenname))
-            //.ForMember(dest => dest.Surname,
-            //option => option.MapFrom(src => src.Surname))
-            //.ForMember(dest => dest.Streetaddress,
-            //option => option.MapFrom(src => src.Streetaddress))
-            //.ForMember(dest => dest.City,
-            //option => option.MapFrom(src => src.City))
-            //.ForMember(dest => dest.Zipcode,
-            //option => option.MapFrom(src => src.Zipcode))
-            //.ForMember(dest => dest.Country,
-            //option => option.MapFrom(src => src.Country))
-            //.ForMember(dest => dest.CountryCode,
-            //option => option.MapFrom(src => src.CountryCode));
 
             CreateMap<NewCustomerDTO, ApplicationUser>()
             .ForMember(dest => dest.UserName,
             option => option.MapFrom(src => src.Username));
 
-
-            //CreateMap<NewCustomerDTO, Account>()
-            //.ForMember(dest => dest.AccountTypesId,
-            //option => option.MapFrom(src => src.AccountTypeId));
-
-            CreateMap<LoanDTO, Loan>();
-            //.ForMember(dest => dest.AccountId,
-            //option => option.MapFrom(src => src.AccountId))
-            //.ForMember(dest=>dest.Duration,
-            //option => option.MapFrom(src => src.Duration))
-            //.ForMember(dest => dest.Amount,
-            //option => option.MapFrom(src => src.Amount));
+            CreateMap<LoanDTO, Loan>()
+                .ForMember(dest => dest.Duration,
+                option => option.MapFrom(src => src.DurationMonths));
 
             CreateMap<MakeTransactionDTO, Transaction>()
                 .ForMember(dest => dest.AccountId,
                 option => option.MapFrom(src => src.FromAccount))
                 .ForMember(dest => dest.Account,
                 option => option.MapFrom(src => src.ToAccount));
-
 
 
 

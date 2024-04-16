@@ -38,18 +38,26 @@ namespace Inlämning_Bank.Api.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(UserDTO user)
         {
-            var result = await _signInManager.PasswordSignInAsync(user.Username, user.Password, false, false);
-
-            if (result.Succeeded)
+            try
             {
-                var tokenString = await _userService.GenerateToken(user);
+                var result = await _signInManager.PasswordSignInAsync(user.Username, user.Password, false, false);
 
-                return Ok(tokenString);
+                if (result.Succeeded)
+                {
+                    var tokenString = await _userService.GenerateToken(user);
+
+                    return Ok(tokenString);
+                }
+                else
+                {
+                    return Unauthorized();
+                }
             }
-            else
+            catch (Exception ex) 
             {
-                return Unauthorized();
+                return Conflict($"Det gick inte att logga in \n{ex.Message}");
             }
+
         }
 
         [Route("/api/customerprofile")]
@@ -69,12 +77,8 @@ namespace Inlämning_Bank.Api.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return Conflict($"Ett fel inträffade \n{ex.Message}");
             }
-
-
         }
-
-
     }
 }

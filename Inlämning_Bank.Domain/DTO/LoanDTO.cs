@@ -17,7 +17,7 @@ namespace Inlämning_Bank.Domain.DTO
         public decimal Amount { get; set; }
 
         // mata in i bodyn antal månader.
-        public int Duration { get; set; }
+        public int DurationMonths { get; set; }
 
 
     }
