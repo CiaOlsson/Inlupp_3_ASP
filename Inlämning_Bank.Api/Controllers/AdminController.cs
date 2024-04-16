@@ -21,7 +21,7 @@ namespace Inlämning_Bank.Api.Controllers
             _customerService = customerService;
         }
 
-        [Route("/api/createaccount")]
+        [Route("/api/createcustomeranduser")]
         [HttpPost]
         public async Task<IActionResult> AddNewCustomerAndAccount([FromBody] NewCustomerDTO customerInfo)
         {
@@ -33,7 +33,7 @@ namespace Inlämning_Bank.Api.Controllers
             try
             {
                 int accountid = await _customerService.AddCustomer(customerInfo);
-                return Ok($"Kunden och inloggning skapades.\nKontonumret är: {accountid}");
+                return Ok($"Kunden och inloggning skapades.\nEtt nytt konto öppnades med kontonummer: {accountid}");
 
             }
             catch (Exception ex)

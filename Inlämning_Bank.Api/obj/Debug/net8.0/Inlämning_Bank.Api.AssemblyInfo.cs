@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inlämning_Bank.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9e22cb840b8e7f9994e009893511913673d6b2b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e13fe7a5e0d0bd44314c3b9c4d3d75325b5a1802")]
 [assembly: System.Reflection.AssemblyProductAttribute("Inlämning_Bank.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inlämning_Bank.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

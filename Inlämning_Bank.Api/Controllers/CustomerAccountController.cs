@@ -75,9 +75,9 @@ namespace Inlämning_Bank.Api.Controllers
             }
         }
 
-        [Route("/api/opennewaccount")]
+        [Route("/api/opennewaccount/{accountType}")]
         [HttpPost]
-        public async Task<IActionResult> OpenNewAccount([FromBody] int accountType)
+        public async Task<IActionResult> OpenNewAccount(int accountType)
         {
             try
             {

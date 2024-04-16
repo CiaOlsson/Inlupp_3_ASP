@@ -2,7 +2,7 @@
   {
     "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.AdminController",
     "Method": "AddNewCustomerAndAccount",
-    "RelativePath": "api/createaccount",
+    "RelativePath": "api/createcustomeranduser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -70,7 +70,7 @@
   {
     "ContainingType": "Inl\u00E4mning_Bank.Api.Controllers.CustomerAccountController",
     "Method": "OpenNewAccount",
-    "RelativePath": "api/opennewaccount",
+    "RelativePath": "api/opennewaccount/{accountType}",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
