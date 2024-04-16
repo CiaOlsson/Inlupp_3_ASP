@@ -10,7 +10,7 @@ namespace Inlämning_Bank.Core.Interfaces
 {
     public interface ICustomerService
     {
-        Task AddCustomer(NewCustomerDTO customerInfo);
+        Task<int> AddCustomer(NewCustomerDTO customerInfo);
         Task<Customer> GetCustomerById(int id);
         
     }

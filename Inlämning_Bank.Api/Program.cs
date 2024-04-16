@@ -1,4 +1,5 @@
 
+using Inlämning_Bank.Api.Extensions;
 using Inlämning_Bank.Core.Interfaces;
 using Inlämning_Bank.Core.Services;
 using Inlämning_Bank.Data.Contexts;
@@ -16,8 +17,6 @@ using System.Text;
 using System.Text.Json.Serialization;
 
 
-//Testa göra extension-methods till services som har mycket konfiguration. Tex swashbuckle. 
-
 namespace Inlämning_Bank.Api
 {
     public class Program
@@ -25,77 +24,23 @@ namespace Inlämning_Bank.Api
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Configuration.AddJsonFile("appsettings.json");
 
-            // Automapper sätts upp som en service, sättet Fredrik visade. 
-            //builder.Services.AddAutoMapper(typeof(Program).Assembly);
-            
-            //Sättet man gör det på om man har problem med att filerna ligger i olika projekt. 
+            //Sättet man kan sätta upp Automapper på om man har problem med att filerna ligger i olika projekt. 
             builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Controllers
             builder.Services.AddControllers()
-                .AddJsonOptions(options =>
-                {
-                    //options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve; 
-                    // undviker loopar, men kan ändå hänvisa till det tidigare objektet på något vis. blir större json än ignore cycles
+                .AddJsonOptions(options => {   // undviker loopar
+                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; });
 
-                    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; // undviker också loopar
-
-                    //options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull; 
-                    // Jag vill nog att null värden ska visas också. för nu har jag ju en DTO klass för när man ska skriva in data.
-                    
-                });
-
-            
-
-            //Swagger
-            builder.Services.AddSwaggerGen(options =>
-            {
-                options.SwaggerDoc("v1", new OpenApiInfo { Title = "BankApp API", Version = "v1" });
-                options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
-                {
-                    In = ParameterLocation.Header,
-                    Description = "Enter token",
-                    Name = "Authorization",
-                    Type = SecuritySchemeType.Http,
-                    BearerFormat = "JWT",
-                    Scheme = "bearer"
-                });
-
-                options.AddSecurityRequirement(new OpenApiSecurityRequirement
-                {
-                    {
-                        new OpenApiSecurityScheme
-                        {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[]{}
-                    }
-
-                });
-            });
-
-            //testar lokal miljövariabel
-            string connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
-
-            //// Om anslutningssträngen inte hittas i miljövariabler, använd appsettings.json
-            //if (string.IsNullOrEmpty(connectionString))
-            //{
-            //    builder.Configuration.AddJsonFile("appsettings.json");
-            //    connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-            //}
+            //Swagger, med inställningar i en extension method. 
+            builder.Services.AddSwaggerExtended();
 
             //Databasen
-            builder.Services.AddDbContext<BankAppDataContext>(
-                options => options.UseSqlServer(builder.Configuration.GetConnectionString(connectionString))
-                );
+            builder.Services.AddDbExtended();
+       
 
-            //Här sätts Identity upp som en tjänst. Bygger på att EF finns. 
+            //Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddEntityFrameworkStores<BankAppDataContext>()
             .AddDefaultTokenProviders();
@@ -114,45 +59,21 @@ namespace Inlämning_Bank.Api
             builder.Services.AddScoped<ITransactionService, TransactionService>();
             builder.Services.AddScoped<ITransactionRepo, TransactionRepo>();
 
-
-
-            string secretKey = Environment.GetEnvironmentVariable("SecretKey");
-
-            //Authentication sätts upp
-            builder.Services.AddAuthentication(opt => {
-                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddJwtBearer(opt => {
-                //Konfiguration av JWT
-                opt.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = "http://localhost:5249/",
-                    ValidAudience = "http://localhost:5249/",
-                    IssuerSigningKey =
-                     new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-                                        
-                };
-            });
-
+            //Jwt, inställningarna har jag lagt i en extension method.
+            builder.Services.AddJwtExtended();
 
 
             var app = builder.Build();
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
+            app.UseSwaggerExtended();
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
 
             // Här skapas rollerna redan vid start om de inte redan finns i databasen. 
-            // SÅg det i video utav Hans Mattin-Lassei. 
+            // Såg det i videon av Hans Mattin-Lassei.
+            // Det var bra att göra så för man ska helst inte skriva in data manuellt i databasen så detta var ett smidigt sätt att göra det på, så att det man behöver finns där från början. 
             using (var scope = app.Services.CreateScope())
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

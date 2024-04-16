@@ -32,8 +32,9 @@ namespace Inlämning_Bank.Api.Controllers
 
             try
             {
-                await _customerService.AddCustomer(customerInfo);
-                return Ok("Customer, account and login created successfully");
+                int accountid = await _customerService.AddCustomer(customerInfo);
+                return Ok($"Customer and login created successfully.\nAccount number: {accountid}");
+
             }
             catch (Exception ex)
             {
@@ -47,7 +48,7 @@ namespace Inlämning_Bank.Api.Controllers
         {
             if (loan == null)
             {
-                return BadRequest("Invalid user data");
+                return BadRequest("Invalid data");
             }
             try
             {

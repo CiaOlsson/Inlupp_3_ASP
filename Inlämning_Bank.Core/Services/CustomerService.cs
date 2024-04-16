@@ -32,7 +32,7 @@ namespace Inlämning_Bank.Core.Services
             _userService = userService;
         }
 
-        public async Task AddCustomer(NewCustomerDTO customerInfo)
+        public async Task<int> AddCustomer(NewCustomerDTO customerInfo)
         {
            
             //Först ska jag separera all kundinformation så jag kan lägga in en del i Customer-tabellen och en annan del i AspNetUser-tabellen. 
@@ -47,7 +47,7 @@ namespace Inlämning_Bank.Core.Services
             await _userService.AddApplicationUser(userModel, returnedCustomer, customerInfo.Password);
 
             // sedan kan jag öppna ett konto till hen. Sist måste jag koppla ihop kunden med kontot.
-            await _accountService.AddAccount(customerInfo.AccountTypeId, returnedCustomer.CustomerId);
+            return await _accountService.AddAccount(customerInfo.AccountTypeId, returnedCustomer.CustomerId);
  
 
 

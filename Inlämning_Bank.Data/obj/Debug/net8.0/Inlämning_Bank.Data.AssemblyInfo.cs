@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Inlämning_Bank.Data")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+45bd405b80284b20791f2a2a675b6568fcd93fca")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9e22cb840b8e7f9994e009893511913673d6b2b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Inlämning_Bank.Data")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Inlämning_Bank.Data")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

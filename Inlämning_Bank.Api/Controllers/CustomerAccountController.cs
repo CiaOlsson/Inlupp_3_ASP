@@ -5,6 +5,7 @@ using Inlämning_Bank.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using System.Security.Claims;
 
 namespace Inlämning_Bank.Api.Controllers
@@ -16,13 +17,11 @@ namespace Inlämning_Bank.Api.Controllers
     {
         private readonly IAccountService _accountService;
         private readonly ITransactionService _transactionService;
-        private readonly IDispositionService _dispositionService;
         private readonly IUserService _userService;
-        public CustomerAccountController(IAccountService accountService, ITransactionService transactionService, IDispositionService dispositionService, IUserService userService)
+        public CustomerAccountController(IAccountService accountService, ITransactionService transactionService, IUserService userService)
         {
             _accountService = accountService;
             _transactionService = transactionService;
-            _dispositionService = dispositionService;
             _userService = userService;
         }
 
@@ -79,9 +78,9 @@ namespace Inlämning_Bank.Api.Controllers
             {
                 var customerId = await _userService.RetrieveCustomerId(User);
 
-                await _accountService.AddAccount(accountType, customerId);
+                int accountId = await _accountService.AddAccount(accountType, customerId);
 
-                return Ok("Ditt nya konto är skapat");
+                return Ok($"Ditt nya konto är skapat, kontonummer: {accountId}");
 
             }
             catch (Exception ex)

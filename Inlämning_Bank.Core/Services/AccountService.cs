@@ -31,7 +31,7 @@ namespace Inlämning_Bank.Core.Services
             return await _repo.GetAccountById(accountId);
         }
 
-        public async Task AddAccount(int accountType, int customerId)
+        public async Task<int> AddAccount(int accountType, int customerId)
         {
             Account account = new Account() 
             {
@@ -46,6 +46,8 @@ namespace Inlämning_Bank.Core.Services
                 int returnedAccountId = await _repo.OpenNewAccount(account);
 
                 await _dispositionService.AddDisposition(customerId, returnedAccountId);
+
+                return returnedAccountId;
 
             }
             catch (Exception ex)

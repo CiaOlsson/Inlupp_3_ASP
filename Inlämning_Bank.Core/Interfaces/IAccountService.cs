@@ -12,7 +12,7 @@ namespace Inlämning_Bank.Core.Interfaces
     public interface IAccountService
     {
 
-        Task AddAccount(int accountType, int customerId);
+        Task<int> AddAccount(int accountType, int customerId);
         Task<Account> GetAccountById(int accountId);
         Task<List<CustomerAccountDTO>> GetCustomerAccounts(System.Security.Claims.ClaimsPrincipal user);
         Task UpdateAccount(Account account);
